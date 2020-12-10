@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Pixeon Healthcare Test</title>
+
+	<link rel="stylesheet" href="/webjars/bootstrap/4.2.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/css/main.css" />
+	
+</head>
+<body>
+
+
+<!-- 
+<script type="text/javascript" th:src="{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+<script th:src="{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+<script src="webjars/jquery/3.0.0/jquery.min.js"></script> 
+-->
+
+<script>
+function showingNew() {
+	var x = document.getElementById("newExam");
+	
+	  if (x.style.display === "none") {
+	    x.style.display = "block";
+	  } else {
+	    x.style.display = "none";
+	  } 
+}
+
+</script>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="https://www.linkedin.com/in/luis-claudio-tavares/" target="_blank">Tavares</a>
+</nav>
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1> Pixeon Healthcare Test</h1>
+        <h2>
+            <span th:text="${page}"></span>
+        </h2>
+    </div>
+   	<div id="menu" class="center">
+		<b class="center">
+  		 <a href="/" >Home</a> | <a href="/healthcareInstitution">Healthcare</a> | <a href="#" onclick="javascript:showingNew();">New Register</a> 
+		</b>
+	</div>
+ 	<br>
+	<div id="command" class="center">
+		
+	
+		<div id="list" align="center">
+
+		        <div id="newExam" align="center" style="display:none">
+		        <br>
+			        
+			        <form action="#" th:action="examSave" th:object="${exam}" method="post">
+			        
+			        <input type="number" th:field="*{idHealthcareInstitution}" readonly hidden="true" />			        
+			        
+			            <table >
+			                <tr>
+			                    <td>Patient Name: </td>
+			                    <td><input type="text" th:field="*{patientName}"  autofocus required /></td>
+			                </tr>
+			                <tr>
+			                    <td>Patient Age: </td>
+			                    <td><input type="number" th:field="*{patientAge}" required/></td>
+			                </tr>
+			                <tr>
+			                    <td>Patient Gender: </td>
+			                    <td><input type="text" th:field="*{patientGender}" required/></td>
+			                </tr>
+			                <tr>
+			                    <td>Physician Name: </td>
+			                    <td><input type="text" th:field="*{physicianName}" required/></td>
+			                </tr>
+			                 <tr>
+			                    <td>Physician CRM: </td>
+			                    <td><input type="text" th:field="*{physicianCRM}" required/></td>
+			                </tr>
+			                <tr>
+			                    <td>Procedure Name: </td>
+			                    <td><input type="text" th:field="*{procedureName}" required/></td>
+			                </tr>
+			                <tr>
+			                    <td><input type="submit" value="Save"></td>
+			                </tr>
+			            </table>
+			        </form> 
+			        
+			    </div>
+		    
+		    <br>
+
+			    <table border="1">
+		            <thead>
+			            <tr>
+			                <th>ID_Exam</th>
+			                <th>Patient_Name</th>
+			                <th>Patient_Age</th>
+			                <th>Patient_Gender</th>
+			                <th>Physician_Name</th>
+			                <th>Physician_CRM</th>
+			                <th>Procedure_Name</th>
+			                <th class="center"></th>
+			            </tr>
+			        </thead>
+        		     <tbody>
+					     <tr th:each="list : ${listExam}">
+			                <td th:text="${list.idExam}"/>
+			                <td th:text="${list.patientName}"/>
+			                <td th:text="${list.patientAge}"/>
+			                <td th:text="${list.patientGender}"/>
+			                <td th:text="${list.physicianName}"/>
+			                <td th:text="${list.physicianCRM}"/>
+			                <td th:text="${list.procedureName}"/>
+			                
+			                <td>
+				                &nbsp;
+									<a th:href="@{'/examNewEdit/' + ${list.idExam}}" style="cursor: pointer;">Edit</a>
+	 			                	&nbsp;|&nbsp;
+				                	<a th:href="@{'/examNewEdit/' + ${list.idExam}}" style="cursor: pointer;">Delete</a>
+				                &nbsp;
+			                </td>
+			            </tr>
+		     		</tbody>		            
+			    </table> 
+		    
+		</div>   
+	</div>
+ 
+</main>
+
+</body>
+</html>

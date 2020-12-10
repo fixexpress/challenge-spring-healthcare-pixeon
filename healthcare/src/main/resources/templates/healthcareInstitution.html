@@ -1,0 +1,116 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Pixeon Healthcare Test</title>
+
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+
+</head>
+<body>
+<!-- <script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script> -->
+
+<script>
+
+function showingNew() {
+	var x = document.getElementById("newHealthcare");
+	
+	  if (x.style.display === "none") {
+	    x.style.display = "block";
+	  } else {
+	    x.style.display = "none";
+	  } 
+}
+
+function showingExams( id ){
+    window.location.href = "examsFromHealthcare/"+id;
+}
+	
+</script>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="https://www.linkedin.com/in/luis-claudio-tavares/" target="_blank">Tavares</a>
+</nav>
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1> Pixeon Healthcare Test</h1>
+        <h2>
+            <span th:text="${page}"></span>
+        </h2>
+    </div>
+   	<div id="menu" class="center">
+		<b class="center">
+		<a href="/" >Home</a> | <a href="#" onclick="javascript:showingNew();">New Register</a> 
+		
+		<!-- <a href="exam">Exam</a> --> 
+		</b>
+	</div>
+ 	<br>
+	<div id="command" class="center">
+		
+	
+		<div id="list" align="center">
+
+ 		        <div id="newHealthcare" align="center" style="display:none">
+		       
+			        
+			        <form action="#" th:action="@{/healthcareInstitution.save}" th:object="${healthcareInstitution}" method="post">
+			            <table >
+			                <tr>
+			                    <td>Name: </td>
+			                    <td><input type="text" th:field="*{name}" required/></td>
+			                </tr>
+			                <tr>
+			                    <td>CNPJ: </td>
+			                    <td><input type="number" th:field="*{cnpj}" required /></td>
+			                </tr>			                
+			                <tr>
+			                    <td><input type="submit" value="Save"></td>
+			                </tr>                    
+			            </table>
+			        </form> 
+			        
+			    </div>
+		    		    
+		    <br>
+		  
+		    
+			    <table border="1" >
+		            <thead>
+			            <tr>
+			                <th>Name</th>
+			                <th>CNPJ</th>
+			                <th class="center"> Exams </th>
+			            </tr>
+			        </thead>
+        		     <tbody>
+					     <tr th:each="list : ${listHhealthcareInstitution}">
+			            	
+
+			                <td th:text="${list.name}"/>
+			                <td th:text="${list.cnpj}"/>
+			                
+			                <td class="center">
+
+ 								<a th:onclick="|showingExams('${list.idHealthcareInstitution}')|" style="cursor: pointer;">
+									<img  alt="Exames" src="/image/exams.png" data-noaft="1" id="imi" data-w="30" data-h="30" style="width: 35px; height: 35px; margin: 0.9px 0px;"/>
+								</a>
+ 
+ 			                </td>
+			            </tr>
+		     		</tbody>		            
+			    </table>
+			    
+			    
+		    
+		</div>   
+	</div>
+ 
+</main>
+
+</body>
+</html>

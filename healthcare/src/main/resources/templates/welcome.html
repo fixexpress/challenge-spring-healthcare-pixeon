@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Pixeon Healthcare Test</title>
+
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/> 
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+
+</head>
+
+<body>
+<!-- <script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script> -->
+<!-- <script th:src="@{/webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script> -->
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="https://www.linkedin.com/in/luis-claudio-tavares/" target="_blank">Tavares</a>
+</nav>
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1> Pixeon Healthcare Test</h1>
+        <h2>
+            <span th:text="${page}"></span>
+        </h2>
+        
+    </div>
+    
+	<div id="menu" class="center">
+		<b class="center">
+		 <a href="healthcareInstitution" >HealthCare</a>
+		</b>
+	</div>
+	
+	<br>
+	<br>
+	<h1 align="center">
+		<img src="https://www.pixeon.com/wp-content/themes/pixeon2018/img/new/logo-pixeon.png" data-src="https://www.pixeon.com/wp-content/themes/pixeon2018/img/new/logo-pixeon.png" alt="Pixeon" class="img-fluid lazy loaded" data-was-processed="true">
+	</h1>
+	
+    <div class="center" id="mensagem"></div>
+ 
+</main>
+
+
+</body>
+</html>
